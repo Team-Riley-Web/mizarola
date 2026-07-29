@@ -1,15 +1,25 @@
 ---
 import '../styles/global.css';
+import socialShareImage from '../assets/images/social-share.png';
 
 interface Props {
   title?: string;
   description?: string;
+  canonicalPath?: string;
 }
 
 const {
   title = 'Konoba Mizarola — Sućuraj, Hvar',
   description = 'Konoba Mizarola u Sućurju na otoku Hvaru: svježa riba, plodovi mora, roštilj i pizza uz pogled na more. / A family konoba in Sućuraj, Hvar serving fresh fish, seafood, grill and pizza by the sea.',
+  canonicalPath = Astro.url.pathname,
 } = Astro.props;
+
+const siteUrl = Astro.site ?? Astro.url;
+const canonicalUrl = new URL(canonicalPath, siteUrl).toString();
+const socialShareUrl = new URL(socialShareImage.src, siteUrl).toString();
+const socialShareAlt = 'Konoba Mizarola by the harbour in Sućuraj, Hvar';
+const socialShareWidth = socialShareImage.width.toString();
+const socialShareHeight = socialShareImage.height.toString();
 ---
 
 <!doctype html>
@@ -21,7 +31,27 @@ const {
     <link rel="icon" type="image/png" sizes="180x180" href="/favicon-pizza.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
     <title>{title}</title>
+
+    <meta property="og:site_name" content="Konoba Mizarola" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="hr_HR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialShareUrl} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content={socialShareWidth} />
+    <meta property="og:image:height" content={socialShareHeight} />
+    <meta property="og:image:alt" content={socialShareAlt} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialShareUrl} />
+    <meta name="twitter:image:alt" content={socialShareAlt} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
