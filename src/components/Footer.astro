@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { Phone } from '@lucide/astro';
+import { Heart, Phone } from '@lucide/astro';
 import barrel from '../assets/images/barrel.png';
 
 const phoneDisplay = '095 534 7103';
@@ -75,7 +75,14 @@ const mapsHref =
 
     <div class="reveal reveal-delay-2 mt-14 flex flex-col items-center justify-between gap-2 border-t border-white/10 pt-6 text-xs text-stone-400 sm:flex-row" x-intersect.once="$el.classList.add('is-visible')">
       <p>&copy; {new Date().getFullYear()} Konoba Mizarola, Sućuraj.</p>
-      <p>Otok Hvar, Hrvatska</p>
+      <a
+        href="https://teamrileyweb.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group inline-flex items-center gap-1.5 font-medium text-white transition"
+      >
+        Made with <Heart class="h-3.5 w-3.5 fill-current text-white transition group-hover:text-red-500" aria-label="love" /> by Team Riley
+      </a>
     </div>
   </div>
 </footer>
