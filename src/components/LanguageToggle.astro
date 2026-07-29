@@ -1,0 +1,30 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<div
+  x-data
+  class:list={['inline-flex absolute right-2 shrink-0 items-center rounded-2xl border border-stone-300 bg-stone-50 p-0.5 text-xs font-semibold', className]}
+  role="group"
+  aria-label="Jezik / Language"
+>
+  <button
+    type="button"
+    @click="$store.lang.set('hr')"
+    :class="$store.lang.current === 'hr' ? 'bg-sea-900 text-white' : 'text-stone-600'"
+    class="px-2.5 py-1 transition rounded-2xl"
+  >
+    HR
+  </button>
+  <button
+    type="button"
+    @click="$store.lang.set('en')"
+    :class="$store.lang.current === 'en' ? 'bg-sea-900 text-white' : 'text-stone-600'"
+    class="px-2.5 py-1 transition rounded-2xl"
+  >
+    EN
+  </button>
+</div>

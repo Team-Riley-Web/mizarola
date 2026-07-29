@@ -1,0 +1,62 @@
+---
+import { Image } from 'astro:assets';
+import grill from '../assets/images/grill.webp';
+import octopus from '../assets/images/octopus.webp';
+import spaghetti from '../assets/images/spaghetti-shrimp.webp';
+import port from '../assets/images/port.webp';
+import outside from '../assets/images/beer.webp';
+import chivapi from '../assets/images/chivapi.webp';
+import lasagna from '../assets/images/lasagna.webp';
+import octopusPeka from '../assets/images/octopus-2.webp';
+import pizza from '../assets/images/pizza.webp';
+import pizzaTwo from '../assets/images/pizza-2.webp';
+import salad from '../assets/images/salad.webp';
+import dining from '../assets/images/dining.jpg';
+import pizzaNight from '../assets/images/pizza-5.jpg';
+
+const photos = [
+  { src: grill, alt: 'Riba i povrće na žaru, otvorena vatra', hr: 'Ravno s vatre', en: 'Straight off the fire' },
+  { src: octopus, alt: 'Hobotnica na žaru, konoba Mizarola', hr: 'Hobotnica gril', en: 'Grilled octopus' },
+  { src: spaghetti, alt: 'Špageti s plodovima mora', hr: 'Plodovi mora', en: 'Fresh from the sea' },
+  { src: outside, alt: 'Pivo s pogledom na brodove u sućurajskoj luci', hr: 'Pivo uz luku', en: 'Beer by the harbour' },
+  { src: dining, alt: 'Obitelj za stolom u konobi Mizarola', hr: 'Dobrodošli za naš stol', en: 'Welcome to our table' },
+  { src: port, alt: 'Ribarska luka u Sućurju', hr: 'Riva u Sućurju', en: 'The harbour in Sućuraj' },
+  { src: pizzaTwo, alt: 'Pizza s pršutom i gljivama uz pivo', hr: 'Pizza s pršutom', en: 'Prosciutto pizza' },
+  { src: chivapi, alt: 'Ćevapi s pomfritom uz pogled na luku', hr: 'Ćevapi uz rivu', en: 'Ćevapi by the harbour' },
+  { src: lasagna, alt: 'Lazanje zapečene sa sirom', hr: 'Domaće lazanje', en: 'Homemade lasagna' },
+  { src: octopusPeka, alt: 'Hobotnica ispod peke s kruhom', hr: 'Hobotnica ispod peke', en: 'Octopus under the peka' },
+  { src: pizza, alt: 'Pizza s morskim plodovima', hr: 'Pizza s plodovima mora', en: 'Seafood pizza' },
+  { src: salad, alt: 'Salata od hobotnice', hr: 'Salata od hobotnice', en: 'Octopus salad' },
+  { src: pizzaNight, alt: 'Dalmazzia pizza za večeru uz luku navečer', hr: 'Dalmazzia pizza', en: 'Dalmazzia pizza' },
+];
+
+const track = [...photos, ...photos];
+---
+
+<section id="jela" class="scroll-mt-20 overflow-hidden">
+  <div class="reveal marquee-fade overflow-hidden" x-intersect.once="$el.classList.add('is-visible')">
+    <div class="animate-marquee flex w-max px-2 hover:[animation-play-state:paused]">
+      {
+        track.map((photo, i) => (
+          <div
+            class="group relative aspect-[3/4] w-56 shrink-0 overflow-hidden sm:w-64"
+            aria-hidden={i >= photos.length ? 'true' : undefined}
+          >
+            <Image
+              src={photo.src}
+              alt={photo.alt}
+              class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+              widths={[400, 640]}
+              sizes="256px"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-sea-950/85 via-sea-950/0 to-transparent" />
+            <div class="absolute bottom-0 left-0 right-0 p-4">
+              <p class="font-display text-lg text-white" x-show="$store.lang.current === 'hr'">{photo.hr}</p>
+              <p class="font-display text-lg text-white" x-cloak x-show="$store.lang.current === 'en'">{photo.en}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

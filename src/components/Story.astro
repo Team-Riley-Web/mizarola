@@ -1,0 +1,52 @@
+---
+import { Image } from 'astro:assets';
+import outside from '../assets/images/outside.webp';
+import brickWall from '../assets/images/brick-wall-texture.jpg';
+---
+
+<section id="prica" class="relative scroll-mt-20 overflow-hidden bg-stone-50 md:grid md:grid-cols-2">
+  <div class="relative order-2 flex items-center px-6 py-20 md:order-1 md:px-14 md:py-28 lg:px-20">
+    <Image
+      src={brickWall}
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 h-full w-full object-cover"
+      widths={[640, 960, 1280]}
+      sizes="(min-width: 768px) 50vw, 100vw"
+      quality={45}
+    />
+    <div class="absolute inset-0 bg-stone-50/88"></div>
+
+    <div class="reveal relative text-center md:text-left" x-intersect.once="$el.classList.add('is-visible')">
+      <p class="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-brick-600">Naša priča &middot; Our story</p>
+
+      <h2 class="font-heading text-4xl font-normal text-sea-900 md:text-5xl" x-show="$store.lang.current === 'hr'">
+        Otkud ime &bdquo;Mizarola&ldquo;
+      </h2>
+      <h2 class="font-heading text-4xl font-normal text-sea-900 md:text-5xl" x-cloak x-show="$store.lang.current === 'en'">
+        Where the name &ldquo;Mizarola&rdquo; comes from
+      </h2>
+
+      <p class="mt-5 text-[22px] leading-[1.5] text-stone-800" x-show="$store.lang.current === 'hr'">
+        Mizarola je drvena bačva koju je magarac nekada nosio na leđima niz kamene sokake Sućurja,
+        puna vode ili vina za obitelj i konobu. Naš magarac s bačvom na logotipu čuva tu uspomenu —
+        i podsjeća nas svaki dan da hranu i piće poslužimo onako kako se to radilo generacijama.
+      </p>
+      <p class="mt-5 text-[22px] leading-[1.5] text-stone-800" x-cloak x-show="$store.lang.current === 'en'">
+        A mizarola is the wooden barrel a donkey once carried on its back through the stone streets of
+        Sućuraj, filled with water or wine for the family and the konoba. The donkey on our logo keeps
+        that memory alive — and reminds us to serve food and drink the way it's been done for generations.
+      </p>
+    </div>
+  </div>
+
+  <div class="reveal reveal-delay-1 order-1 min-h-[20rem] md:order-2" x-intersect.once="$el.classList.add('is-visible')">
+    <Image
+      src={outside}
+      alt="Konoba Mizarola, terasa i kamena fasada u Sućurju"
+      class="h-full w-full object-cover"
+      widths={[480, 768, 1024]}
+      sizes="(min-width: 768px) 50vw, 100vw"
+    />
+  </div>
+</section>

@@ -1,0 +1,81 @@
+---
+import { Image } from 'astro:assets';
+import { Phone } from '@lucide/astro';
+import barrel from '../assets/images/barrel.png';
+
+const phoneDisplay = '095 534 7103';
+const phoneHref = 'tel:+385955347103';
+const address = ['Riva 18', '21469 Sućuraj', 'Hrvatska'];
+const mapsHref =
+  'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Konoba Mizarola, Riva 18, 21469 Sućuraj, Croatia');
+---
+
+<footer id="kontakt" class="relative scroll-mt-20 overflow-hidden bg-sea-950 text-stone-200">
+  <div class="checked-strip h-2 w-full opacity-90"></div>
+  <Image
+    src={barrel}
+    alt=""
+    class="pointer-events-none absolute left-6 bottom-16 hidden w-36 rotate-[-8deg] opacity-25 brightness-0 invert md:left-10 md:bottom-24 md:block md:w-56"
+    widths={[144, 224, 320]}
+    sizes="(min-width: 768px) 14rem, 9rem"
+    aria-hidden="true"
+  />
+
+  <div class="relative mx-auto max-w-6xl px-6 py-16 md:px-8 md:py-24">
+    <div class="grid items-center gap-10 md:grid-cols-[1.05fr_0.75fr] md:gap-16">
+      <div class="reveal text-center md:text-left" x-intersect.once="$el.classList.add('is-visible')">
+        <p class="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-brick-500">Kontakt &middot; Contact</p>
+
+        <h2 class="font-heading text-3xl font-medium leading-tight text-white md:text-5xl" x-show="$store.lang.current === 'hr'">
+          Rezervirajte stol blizu mora.
+        </h2>
+        <h2 class="font-heading text-3xl font-medium leading-tight text-white md:text-5xl" x-cloak x-show="$store.lang.current === 'en'">
+          Reserve a table by the sea.
+        </h2>
+
+        <p class="mx-auto max-w-md leading-relaxed text-gray-100 md:mx-0" x-show="$store.lang.current === 'hr'">
+          Konoba Mizarola nalazi se na rivi u Sućurju. Nazovite za stol, pitajte za dnevnu ponudu i dođite gladni.
+        </p>
+        <p class="mx-auto max-w-md leading-relaxed text-gray-100 md:mx-0" x-cloak x-show="$store.lang.current === 'en'">
+          Konoba Mizarola sits right on the riva in Sućuraj. Call to book a table, ask about the day's catch, and come hungry.
+        </p>
+      </div>
+
+      <div class="reveal reveal-delay-1 grid gap-1 rounded-3xl border border-white/15 bg-white/5 p-5 backdrop-blur-xl" x-intersect.once="$el.classList.add('is-visible')">
+        <div class="grid grid-cols-[5.5rem_1fr] gap-4 border-b border-white/10 py-3.5">
+          <span class="text-[0.68rem] font-bold uppercase tracking-[0.14em] text-stone-400">
+            <span x-show="$store.lang.current === 'hr'">Telefon</span>
+            <span x-cloak x-show="$store.lang.current === 'en'">Phone</span>
+          </span>
+          <a href={phoneHref} class="flex items-center gap-2 font-medium text-white hover:text-brick-400">
+            <Phone class="h-4 w-4 shrink-0 text-brick-500" />
+            {phoneDisplay}
+          </a>
+        </div>
+
+        <div class="grid grid-cols-[5.5rem_1fr] gap-4 border-b border-white/10 py-3.5">
+          <span class="text-[0.68rem] font-bold uppercase tracking-[0.14em] text-stone-400">
+            <span x-show="$store.lang.current === 'hr'">Adresa</span>
+            <span x-cloak x-show="$store.lang.current === 'en'">Address</span>
+          </span>
+          <a href={mapsHref} target="_blank" rel="noopener noreferrer" class="font-medium text-white hover:text-brick-400">
+            {address.join(', ')}
+          </a>
+        </div>
+
+        <div class="grid grid-cols-[5.5rem_1fr] gap-4 py-3.5">
+          <span class="text-[0.68rem] font-bold uppercase tracking-[0.14em] text-stone-400">
+            <span x-show="$store.lang.current === 'hr'">Vrijeme</span>
+            <span x-cloak x-show="$store.lang.current === 'en'">Hours</span>
+          </span>
+          <span class="font-medium text-white"><span x-show="$store.lang.current === 'hr'">Svaki dan</span><span x-cloak x-show="$store.lang.current === 'en'">Every day</span> &middot; 10:00&ndash;23:00</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-2 mt-14 flex flex-col items-center justify-between gap-2 border-t border-white/10 pt-6 text-xs text-stone-400 sm:flex-row" x-intersect.once="$el.classList.add('is-visible')">
+      <p>&copy; {new Date().getFullYear()} Konoba Mizarola, Sućuraj.</p>
+      <p>Otok Hvar, Hrvatska</p>
+    </div>
+  </div>
+</footer>
