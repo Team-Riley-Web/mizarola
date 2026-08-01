@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import barrelDark from '../assets/images/barrel-dark.png';
+import barrelWhite from '../assets/images/barrel-white.png';
 
 interface Props {
   title?: string;
@@ -24,9 +26,10 @@ const socialShareAlt = 'Konoba Mizarola by the harbour in Sućuraj, Hvar';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="180x180" href="/favicon-pizza.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" media="(prefers-color-scheme: light)" href={barrelDark.src} />
+    <link rel="icon" type="image/png" media="(prefers-color-scheme: dark)" href={barrelWhite.src} />
+    <link rel="icon" type="image/png" href={barrelDark.src} />
+    <link rel="apple-touch-icon" href={barrelDark.src} />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
     <title>{title}</title>
