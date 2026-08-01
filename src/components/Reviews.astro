@@ -14,6 +14,15 @@ for (let i = 0; i < reviews.length; i += groupSize) {
 
 const mobileSlides = [reviews[reviews.length - 1], ...reviews, reviews[0]];
 const desktopSlides = [slides[slides.length - 1], ...slides, slides[0]];
+
+const reviewTextClass = (text: string) => {
+  if (text.length < 150) return 'text-[1.35rem] leading-[1.65] md:text-[1.2rem] lg:text-[1.32rem]';
+  if (text.length < 300) return 'text-[1.08rem] leading-[1.72] md:text-[1.05rem] lg:text-[1.16rem]';
+  return 'text-base leading-[1.7] md:text-[0.98rem] lg:text-[1.05rem]';
+};
+
+const reviewClass = (review: (typeof reviews)[number]) =>
+  reviewTextClass(review.textHr.length > review.textEn.length ? review.textHr : review.textEn);
 ---
 
 <section
@@ -21,7 +30,7 @@ const desktopSlides = [slides[slides.length - 1], ...slides, slides[0]];
   class="relative scroll-mt-20 overflow-hidden bg-white py-20 md:py-28"
 >
   <div
-    class="pointer-events-none absolute inset-0 bg-[image:var(--reviews-pattern)] bg-[length:420px_auto] bg-repeat opacity-[0.08] md:bg-[length:560px_auto]"
+    class="pointer-events-none absolute inset-0 bg-[image:var(--reviews-pattern)] bg-[length:420px_auto] bg-repeat opacity-[0.03] md:bg-[length:560px_auto]"
     style={`--reviews-pattern: url(${donkeyPattern.src});`}
     aria-hidden="true"
   ></div>
@@ -106,7 +115,7 @@ const desktopSlides = [slides[slides.length - 1], ...slides, slides[0]];
         }`}
         x-init={`setInterval(() => { if (!mPaused) mNext() }, 9500)`}
       >
-        <div class="-mx-2 overflow-hidden px-2 py-2" @mouseenter="mPaused = true" @mouseleave="mPaused = false">
+        <div class="overflow-hidden" @mouseenter="mPaused = true" @mouseleave="mPaused = false">
           <div
             class="flex ease-out"
             :class="mMoving ? 'transition-transform duration-[1200ms]' : 'transition-none'"
@@ -116,17 +125,18 @@ const desktopSlides = [slides[slides.length - 1], ...slides, slides[0]];
             {
               mobileSlides.map((review) => (
                 <div
-                  class="min-w-full px-1"
+                  class="min-w-full"
                   @touchstart.passive="_tx = $event.touches[0].clientX"
                   @touchend.passive="let dx = $event.changedTouches[0].clientX - _tx; if (Math.abs(dx) > 40) dx < 0 ? mNext() : mPrev()"
                 >
-                  <article class="relative flex h-full min-h-[20rem] flex-col overflow-hidden bg-sea-950 p-7 shadow-[0_26px_70px_rgba(8,40,58,0.24),0_1px_0_rgba(255,255,255,0.08)_inset] ring-1 ring-sea-800/55">
-                    <div class="pointer-events-none absolute bottom-2 right-6 font-heading text-[7rem] leading-none text-sea-800" aria-hidden="true">&rdquo;</div>
-                    <p class="relative flex-1 text-base leading-[1.7] tracking-[0.02em] text-gray-100">
-                      &ldquo;{review.text}&rdquo;
+                  <article class="relative mx-auto flex min-h-[22rem] w-full max-w-3xl flex-col overflow-hidden bg-sea-950 p-7 pb-24 shadow-[0_26px_70px_rgba(8,40,58,0.24),0_1px_0_rgba(255,255,255,0.08)_inset] sm:p-8 sm:pb-24">
+                    <p class={`relative max-w-[38rem] flex-1 tracking-[0.02em] text-gray-100 ${reviewClass(review)}`}>
+                      <span x-show="$store.lang.current === 'hr'">&ldquo;{review.textHr}&rdquo;</span>
+                      <span x-cloak x-show="$store.lang.current === 'en'">&ldquo;{review.textEn}&rdquo;</span>
                     </p>
-                    <div class="relative mt-8">
+                    <div class="absolute inset-x-7 bottom-7 flex items-end justify-between gap-6 sm:inset-x-8 sm:bottom-8">
                       <p class="text-base font-bold text-white">{review.name}</p>
+                      <div class="pointer-events-none absolute bottom-0 right-0 translate-y-[30px] font-heading text-[5rem] leading-[0.5] text-sea-800/80" aria-hidden="true">&rdquo;</div>
                     </div>
                   </article>
                 </div>
@@ -166,13 +176,14 @@ const desktopSlides = [slides[slides.length - 1], ...slides, slides[0]];
             desktopSlides.map((slide) => (
                 <div class="grid min-w-full grid-cols-2 gap-8">
                 {slide.map((review) => (
-                  <article class="relative flex min-h-[21rem] flex-col overflow-hidden bg-sea-950 p-9 shadow-[0_28px_80px_rgba(8,40,58,0.22),0_1px_0_rgba(255,255,255,0.08)_inset] ring-1 ring-sea-800/55 lg:p-12">
-                    <div class="pointer-events-none absolute bottom-4 right-9 font-heading text-[8rem] leading-none text-sea-800 lg:text-[9rem]" aria-hidden="true">&rdquo;</div>
-                    <p class="relative max-w-[40rem] flex-1 text-[1.05rem] leading-[1.75] tracking-[0.02em] text-gray-100 lg:text-[1.16rem]">
-                      &ldquo;{review.text}&rdquo;
+                  <article class="relative flex min-h-[21rem] flex-col overflow-hidden bg-sea-950 p-9 pb-28 shadow-[0_28px_80px_rgba(8,40,58,0.22),0_1px_0_rgba(255,255,255,0.08)_inset] lg:p-12 lg:pb-32">
+                    <p class={`relative max-w-[40rem] flex-1 tracking-[0.02em] text-gray-100 ${reviewClass(review)}`}>
+                      <span x-show="$store.lang.current === 'hr'">&ldquo;{review.textHr}&rdquo;</span>
+                      <span x-cloak x-show="$store.lang.current === 'en'">&ldquo;{review.textEn}&rdquo;</span>
                     </p>
-                    <div class="relative mt-8">
+                    <div class="absolute inset-x-9 bottom-9 flex items-end justify-between gap-6 lg:inset-x-12 lg:bottom-12">
                       <p class="text-lg font-bold text-white">{review.name}</p>
+                      <div class="pointer-events-none absolute bottom-0 right-0 translate-y-[60px] font-heading text-[7rem] leading-[0.5] text-sea-800/80 lg:text-[8rem]" aria-hidden="true">&rdquo;</div>
                     </div>
                   </article>
                 ))}

@@ -24,16 +24,15 @@ const photos = [
   { src: pizzaTwo, alt: 'Pizza s pršutom i gljivama uz pivo', hr: 'Pizza s pršutom', en: 'Prosciutto pizza' },
   { src: chivapi, alt: 'Ćevapi s pomfritom uz pogled na luku', hr: 'Ćevapi uz rivu', en: 'Ćevapi by the harbour' },
   { src: lasagna, alt: 'Lazanje zapečene sa sirom', hr: 'Domaće lazanje', en: 'Homemade lasagna' },
-  { src: octopusPeka, alt: 'Hobotnica ispod peke s kruhom', hr: 'Hobotnica ispod peke', en: 'Octopus under the peka' },
   { src: pizza, alt: 'Pizza s morskim plodovima', hr: 'Pizza s plodovima mora', en: 'Seafood pizza' },
   { src: salad, alt: 'Salata od hobotnice', hr: 'Salata od hobotnice', en: 'Octopus salad' },
-  { src: pizzaNight, alt: 'Dalmazzia pizza za večeru uz luku navečer', hr: 'Dalmazzia pizza', en: 'Dalmazzia pizza' },
+  { src: pizzaNight, alt: 'Dalmatinac pizza za večeru uz luku navečer', hr: 'Dalmatinac pizza', en: 'Dalmatinac pizza' },
 ];
 
 const track = [...photos, ...photos];
 ---
 
-<section id="jela" class="scroll-mt-20 overflow-hidden">
+<section class="scroll-mt-20 overflow-hidden">
   <div class="reveal marquee-fade overflow-hidden" x-intersect.once="$el.classList.add('is-visible')">
     <div class="animate-marquee flex w-max px-2 hover:[animation-play-state:paused]">
       {
@@ -46,6 +45,10 @@ const track = [...photos, ...photos];
               src={photo.src}
               alt={photo.alt}
               class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+              style="scale: 1.03;"
+              data-scroll-scale-image
+              data-scroll-scale-base="1.03"
+              data-scroll-scale-amount="0.08"
               widths={[400, 640]}
               sizes="256px"
             />

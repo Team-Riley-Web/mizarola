@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import grill from '../assets/images/grill.webp';
-import outside from '../assets/images/outside.webp';
 
 const mapsHref =
   'https://www.google.com/maps/search/?api=1&query=' +
@@ -12,16 +11,10 @@ const mapsHref =
   <Image
     src={grill}
     alt="Riba i povrće na žaru, otvorena vatra u Konobi Mizarola"
-    class="absolute inset-0 hidden h-full w-full scale-[1.02] object-cover sm:block"
+    class="absolute inset-0 h-full w-full object-cover"
+    style="scale: 1.04;"
+    data-scroll-scale-image
     widths={[768, 1200, 1800, 2400]}
-    sizes="100vw"
-    priority
-  />
-  <Image
-    src={outside}
-    alt="Konoba Mizarola, terasa i kamena fasada u Sućurju"
-    class="absolute inset-0 h-full w-full scale-[1.02] object-cover sm:hidden"
-    widths={[480, 768, 1080]}
     sizes="100vw"
     priority
   />
@@ -38,7 +31,7 @@ const mapsHref =
       </h1>
 
       <p class="mx-auto max-w-xl text-lg leading-[1.5] tracking-[0.03em] text-white/90" x-show="$store.lang.current === 'hr'">
-        Svježa riba, vatra s gradela i domaća kuhinja na rivi, u mjestu gdje se kamen spušta ravno u more.
+        Svježa riba s gradela i domaća kuhinja na rivi, s pogledom na luku tik uz more.
       </p>
       <p class="mx-auto max-w-xl text-lg leading-[1.5] tracking-[0.03em] text-white/90" x-cloak x-show="$store.lang.current === 'en'">
         Fresh fish, grill, seafood and homestyle Dalmatian cooking by the harbour in Sućuraj.

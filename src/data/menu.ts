@@ -26,7 +26,7 @@ export const menu: MenuCategory[] = [
       { hr: 'Salata od hobotnice', en: 'Octopus salad', price: '19' },
       { hr: 'Salata s tunjevinom', en: 'Tuna salad', price: '13' },
       { hr: 'Inćuni na salatu', en: 'Anchovy salad', price: '12' },
-      { hr: 'Salata s pilentinom', en: 'Chicken salad', price: '13' },
+      { hr: 'Salata s piletinom', en: 'Chicken salad', price: '13' },
     ],
   },
   {
@@ -89,7 +89,7 @@ export const menu: MenuCategory[] = [
       { hr: 'Pomfrit', en: 'Fried potatoes', price: '5,5' },
       { hr: 'Kuhana riža', en: 'Rice', price: '5' },
       { hr: 'Blitva', en: 'Swiss chard', price: '7' },
-      { hr: 'Povrće gril', en: 'Grilled vegetables', price: '7' },
+      { hr: 'Povrće grill', en: 'Grilled vegetables', price: '7' },
     ],
   },
   {
@@ -160,22 +160,6 @@ export const menu: MenuCategory[] = [
         noteHr: 'Rajčica, gauda, parmezan, livanjski, mozzarella',
         noteEn: 'Tomato, gouda, parmesan, livanjski cheese, mozzarella',
       },
-    ],
-  },
-  {
-    id: 'pizza-extra',
-    hr: 'Pizza extra',
-    en: 'Pizza extras',
-    icon: 'CirclePlus',
-    items: [
-      { hr: 'Pršut', en: 'Smoked ham', price: '4' },
-      { hr: 'Kukuruz', en: 'Sweetcorn', price: '2' },
-      { hr: 'Feferoni', en: 'Chilli peppers', price: '2' },
-      { hr: 'Jaje', en: 'Egg', price: '2' },
-      { hr: 'Masline', en: 'Olives', price: '2' },
-      { hr: 'Sir', en: 'Cheese', price: '3' },
-      { hr: 'Kiselo vrhnje', en: 'Sour cream', price: '2' },
-      { hr: 'Pizza kruh', en: 'Pizza bread', price: '6' },
     ],
   },
   {

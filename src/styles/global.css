@@ -58,6 +58,10 @@ body {
   word-spacing: -0.235em;
 }
 
+[data-scroll-scale-image] {
+  will-change: scale;
+}
+
 @keyframes marquee-scroll {
   to {
     transform: translateX(-50%);

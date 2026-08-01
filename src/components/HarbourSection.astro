@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets';
+import port from '../assets/images/port.webp';
+---
+
+<section id="sucuraj" class="relative scroll-mt-20 overflow-hidden bg-sea-950">
+  <div class="reveal relative min-h-[36rem] overflow-hidden md:min-h-[42rem]" x-intersect.once="$el.classList.add('is-visible')">
+    <Image
+      src={port}
+      alt="Luka i riva u Sućurju, blizu Konobe Mizarola"
+      class="absolute inset-0 h-full w-full object-cover"
+      style="scale: 1.04;"
+      data-scroll-scale-image
+      widths={[640, 960, 1360]}
+      sizes="100vw"
+    />
+    <div class="absolute inset-x-0 top-0 z-10 h-72 bg-[linear-gradient(180deg,#0d3b52_0%,rgba(13,59,82,0.96)_24%,rgba(13,59,82,0.68)_58%,rgba(13,59,82,0)_100%)] md:h-96"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-sea-950/92 via-sea-950/58 to-sea-950/12"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-sea-950/78 via-transparent to-sea-950/10"></div>
+
+    <div class="relative z-10 flex min-h-[36rem] items-end px-6 py-14 md:min-h-[42rem] md:px-14 md:py-20 lg:px-20">
+      <div class="max-w-2xl text-white">
+        <p class="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-amber-100/90">Sućuraj harbour</p>
+        <h2 class="font-heading text-4xl font-normal leading-tight md:text-5xl" x-show="$store.lang.current === 'hr'">
+          Na rivi, korak od brodova.
+        </h2>
+        <h2 class="font-heading text-4xl font-normal leading-tight md:text-5xl" x-cloak x-show="$store.lang.current === 'en'">
+          On the riva, steps from the boats.
+        </h2>
+
+        <p class="mt-5 max-w-xl text-lg leading-[1.6] tracking-[0.02em] text-gray-100" x-show="$store.lang.current === 'hr'">
+          Sućuraj je ribarsko mjesto na istočnom vrhu Hvara, okrenuto prema kopnu i Pelješcu.
+          Generacijama su se ovdje susretali brodovi, trajekti, ribari i putnici, a riva je ostala
+          prirodno mjesto za sjesti, jesti i gledati luku.
+        </p>
+        <p class="mt-5 max-w-xl text-lg leading-[1.6] tracking-[0.02em] text-gray-100" x-cloak x-show="$store.lang.current === 'en'">
+          Sućuraj is a fishing village on the eastern tip of Hvar, facing the mainland and Pelješac.
+          For generations, boats, ferries, fishers and travellers have met here, leaving the riva as
+          the natural place to sit, eat and watch the harbour.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

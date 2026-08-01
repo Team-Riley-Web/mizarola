@@ -16,12 +16,16 @@ const mapsHref =
     src={barrel}
     alt=""
     class="pointer-events-none absolute left-6 bottom-16 hidden w-36 rotate-[-8deg] opacity-25 brightness-0 invert md:left-10 md:bottom-24 md:block md:w-56"
+    style="scale: 1;"
+    data-scroll-scale-image
+    data-scroll-scale-base="1"
+    data-scroll-scale-amount="0.06"
     widths={[144, 224, 320]}
     sizes="(min-width: 768px) 14rem, 9rem"
     aria-hidden="true"
   />
 
-  <div class="relative mx-auto max-w-6xl px-6 py-16 md:px-8 md:py-24">
+  <div class="relative mx-auto max-w-6xl px-6 pb-32 pt-16 md:px-8 md:py-24">
     <div class="grid items-center gap-10 md:grid-cols-[1.05fr_0.75fr] md:gap-16">
       <div class="reveal text-center md:text-left" x-intersect.once="$el.classList.add('is-visible')">
         <p class="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-brick-500">Kontakt &middot; Contact</p>

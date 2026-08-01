@@ -2,25 +2,51 @@
 import { Image } from 'astro:assets';
 import { icons } from '@lucide/astro';
 import { menu } from '../data/menu';
+import barrels from '../assets/images/barrels.png';
 import croatiaShield from '../assets/images/croatia-shield.png';
+import donkey from '../assets/images/donkey2.png';
 import oliveBranch from '../assets/images/olive-branch.png';
 ---
 
-<section id="jelovnik" class="relative scroll-mt-20 overflow-hidden bg-[linear-gradient(135deg,#111c27_0%,#08283a_58%,#0d3b52_100%)] pb-28 pt-20 md:pb-40 md:pt-28">
+<section id="jelovnik" class="relative scroll-mt-20 overflow-hidden bg-[linear-gradient(180deg,#111c27_0%,#08283a_52%,#0d3b52_100%)] pt-20 md:pt-28">
   <div class="pointer-events-none absolute inset-0" aria-hidden="true">
     <Image
       src={oliveBranch}
       alt=""
       class="absolute left-[calc(var(--spacing)*-2)] top-[8rem] hidden w-64 -rotate-[18deg] opacity-[0.07] md:block md:w-96"
+      style="scale: 1.02;"
+      data-scroll-scale-image
+      data-scroll-scale-base="1.02"
+      data-scroll-scale-amount="0.06"
       widths={[256, 384, 512]}
       sizes="(min-width: 768px) 24rem, 16rem"
     />
     <Image
       src={oliveBranch}
       alt=""
-      class="absolute -bottom-12 -right-28 hidden w-72 -scale-x-100 -scale-y-100 rotate-[18deg] opacity-[0.07] md:bottom-[calc(var(--spacing)*4)] md:-right-20 md:block md:w-[28rem]"
+      class="absolute -bottom-12 -right-28 hidden w-72 -scale-x-100 -scale-y-100 rotate-[180deg] opacity-[0.07] md:bottom-[calc(var(--spacing)*4)] md:-right-20 md:block md:w-[28rem]"
+      style="scale: 1.02;"
+      data-scroll-scale-image
+      data-scroll-scale-base="1.02"
+      data-scroll-scale-amount="0.06"
       widths={[288, 448, 640]}
       sizes="(min-width: 768px) 28rem, 18rem"
+    />
+    <Image
+      src={barrels}
+      alt=""
+      class="absolute right-[-7rem] top-1/4 hidden w-72 -translate-y-1/2 rotate-[8deg] opacity-10 brightness-0 invert lg:block xl:right-[-4rem] xl:w-96"
+      widths={[288, 384, 520]}
+      sizes="(min-width: 1280px) 24rem, 18rem"
+      aria-hidden="true"
+    />
+    <Image
+      src={donkey}
+      alt=""
+      class="absolute left-[-8rem] top-3/4 hidden w-72 -translate-y-1/2 -rotate-[7deg] opacity-10 brightness-0 invert lg:block xl:left-[-5rem] xl:w-96"
+      widths={[288, 384, 520]}
+      sizes="(min-width: 1280px) 24rem, 18rem"
+      aria-hidden="true"
     />
   </div>
 
@@ -32,12 +58,16 @@ import oliveBranch from '../assets/images/olive-branch.png';
         width={110}
         height={145}
         class="mb-7 h-24 w-auto shrink-0 drop-shadow-md md:h-28"
+        style="scale: 1;"
+        data-scroll-scale-image
+        data-scroll-scale-base="1"
+        data-scroll-scale-amount="0.06"
       />
 
       <div class="max-w-2xl">
         <p class="mb-3 text-lg font-normal tracking-[0.03em] text-gray-100">Jelovnik &middot; Menu</p>
         <h2 class="font-heading text-4xl font-normal text-white text-[clamp(2.5rem,5vw,4rem)]">
-          <span x-show="$store.lang.current === 'hr'">Što nudimo</span>
+          <span x-show="$store.lang.current === 'hr'">Što Nudimo</span>
           <span x-cloak x-show="$store.lang.current === 'en'">What We Serve</span>
         </h2>
         <p class="mt-4 text-lg leading-[1.5] tracking-[0.03em] text-gray-100" x-show="$store.lang.current === 'hr'">
@@ -49,7 +79,7 @@ import oliveBranch from '../assets/images/olive-branch.png';
       </div>
     </div>
 
-    <nav class="reveal reveal-delay-1 mt-10 flex flex-wrap justify-center gap-2" aria-label="Kategorije jelovnika" x-intersect.once="$el.classList.add('is-visible')">
+    <nav class="reveal reveal-delay-1 mt-10 flex flex-wrap justify-center gap-2 lg:max-w-3xl lg:mx-auto" aria-label="Kategorije jelovnika" x-intersect.once="$el.classList.add('is-visible')">
       {
         menu.map((category) => (
           <a
@@ -69,11 +99,11 @@ import oliveBranch from '../assets/images/olive-branch.png';
           const Icon = icons[category.icon as keyof typeof icons];
 
           const items = (
-            <ul class="gap-x-16 gap-y-10 sm:grid sm:grid-cols-2">
+            <ul class="gap-x-10 gap-y-10 md:grid md:grid-cols-2">
               {category.items.map((item) => (
                 <li class="pb-8">
                   <div class="flex items-baseline gap-3">
-                    <span class="font-display text-2xl font-normal text-white transition-colors hover:text-gray-100">
+                    <span class="min-w-0 max-w-[72%] font-display text-2xl font-normal leading-tight text-white transition-colors hover:text-gray-100 md:max-w-none">
                       <span x-show="$store.lang.current === 'hr'">{item.hr}</span>
                       <span x-cloak x-show="$store.lang.current === 'en'">{item.en}</span>
                     </span>
@@ -92,7 +122,7 @@ import oliveBranch from '../assets/images/olive-branch.png';
           );
 
           return (
-            <div id={category.id} class="reveal scroll-mt-24" x-intersect.once="$el.classList.add('is-visible')">
+            <div id={category.id} class="reveal mx-auto max-w-4xl scroll-mt-24" x-intersect.once="$el.classList.add('is-visible')">
               <div class="mb-7 flex items-center gap-3 border-b-2 border-gray-500 pb-3">
                 <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-700 text-gray-100">
                   <Icon class="h-4.5 w-4.5" />
