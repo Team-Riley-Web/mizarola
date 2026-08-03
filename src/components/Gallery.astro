@@ -54,8 +54,12 @@ const track = [...photos, ...photos];
             />
             <div class="absolute inset-0 bg-gradient-to-t from-sea-950/85 via-sea-950/0 to-transparent" />
             <div class="absolute bottom-0 left-0 right-0 p-4">
-              <p class="font-display text-lg text-white" x-show="$store.lang.current === 'hr'">{photo.hr}</p>
-              <p class="font-display text-lg text-white" x-cloak x-show="$store.lang.current === 'en'">{photo.en}</p>
+              <p
+                class="font-display text-lg text-white"
+                x-text={`$store.lang.current === 'hr' ? ${JSON.stringify(photo.hr)} : ${JSON.stringify(photo.en)}`}
+              >
+                {photo.hr}
+              </p>
             </div>
           </div>
         ))

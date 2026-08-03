@@ -9,7 +9,9 @@ const googleReviewsHref =
 const groupSize = 2;
 const slides: (typeof reviews)[] = [];
 for (let i = 0; i < reviews.length; i += groupSize) {
-  slides.push(reviews.slice(i, i + groupSize));
+  const slide = reviews.slice(i, i + groupSize);
+  if (slide.length < groupSize) slide.push(...reviews.slice(0, groupSize - slide.length));
+  slides.push(slide);
 }
 
 const mobileSlides = [reviews[reviews.length - 1], ...reviews, reviews[0]];
@@ -131,8 +133,9 @@ const reviewClass = (review: (typeof reviews)[number]) =>
                 >
                   <article class="relative mx-auto flex min-h-[22rem] w-full max-w-3xl flex-col overflow-hidden bg-sea-950 p-7 pb-24 shadow-[0_26px_70px_rgba(8,40,58,0.24),0_1px_0_rgba(255,255,255,0.08)_inset] sm:p-8 sm:pb-24">
                     <p class={`relative max-w-[38rem] flex-1 tracking-[0.02em] text-gray-100 ${reviewClass(review)}`}>
-                      <span x-show="$store.lang.current === 'hr'">&ldquo;{review.textHr}&rdquo;</span>
-                      <span x-cloak x-show="$store.lang.current === 'en'">&ldquo;{review.textEn}&rdquo;</span>
+                      <span x-text={`$store.lang.current === 'hr' ? ${JSON.stringify(`“${review.textHr}”`)} : ${JSON.stringify(`“${review.textEn}”`)}`}>
+                        &ldquo;{review.textHr}&rdquo;
+                      </span>
                     </p>
                     <div class="absolute inset-x-7 bottom-7 flex items-end justify-between gap-6 sm:inset-x-8 sm:bottom-8">
                       <p class="text-base font-bold text-white">{review.name}</p>
@@ -178,8 +181,9 @@ const reviewClass = (review: (typeof reviews)[number]) =>
                 {slide.map((review) => (
                   <article class="relative flex min-h-[21rem] flex-col overflow-hidden bg-sea-950 p-9 pb-28 shadow-[0_28px_80px_rgba(8,40,58,0.22),0_1px_0_rgba(255,255,255,0.08)_inset] lg:p-12 lg:pb-32">
                     <p class={`relative max-w-[40rem] flex-1 tracking-[0.02em] text-gray-100 ${reviewClass(review)}`}>
-                      <span x-show="$store.lang.current === 'hr'">&ldquo;{review.textHr}&rdquo;</span>
-                      <span x-cloak x-show="$store.lang.current === 'en'">&ldquo;{review.textEn}&rdquo;</span>
+                      <span x-text={`$store.lang.current === 'hr' ? ${JSON.stringify(`“${review.textHr}”`)} : ${JSON.stringify(`“${review.textEn}”`)}`}>
+                        &ldquo;{review.textHr}&rdquo;
+                      </span>
                     </p>
                     <div class="absolute inset-x-9 bottom-9 flex items-end justify-between gap-6 lg:inset-x-12 lg:bottom-12">
                       <p class="text-lg font-bold text-white">{review.name}</p>
